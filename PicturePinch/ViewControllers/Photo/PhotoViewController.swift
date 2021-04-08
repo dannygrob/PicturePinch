@@ -13,14 +13,22 @@ import AlamofireImage
 class PhotoViewController: UIViewController {
     var scrollView: ImageScrollView!
     
-    var photo:Albums.Contents.ViewModel?
+    var photo:Pictures.List.ViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let cachedImage = photo?.cachedImage {
+        self.title = photo?.title
+    
+        self.loadPicture()
+    }
+    
+    func loadPicture() {
+        guard let photoURL = photo?.url else {
+            return
+        }
+        if let cachedImage = ImageCacheService.fetch(key: photoURL) {
             self.setImage(cachedImage)
-        } else if let urlString = photo?.url, let url = URL(string:urlString) {
+        } else if let url = URL(string: photoURL) {
             let downloader = ImageDownloader()
             let urlRequest = URLRequest(url: url)
             
@@ -29,11 +37,10 @@ class PhotoViewController: UIViewController {
                 if case .success(let image) = response.result {
                     self.setImage(image)
                     self.scrollView.setZoomScale()
+                    ImageCacheService.add(key: photoURL, image: image)
                 }
             })
         }
-        
-        self.title = photo?.title
     }
     
     override func viewWillAppear(_ animated: Bool) {

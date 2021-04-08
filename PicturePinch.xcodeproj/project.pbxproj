@@ -42,6 +42,7 @@
 		30D16E7B261E485E00A166A3 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE357261669C0000B4933 /* Album.swift */; };
 		30D16E8A261E490A00A166A3 /* album.json in Resources */ = {isa = PBXBuildFile; fileRef = 30D16E89261E490A00A166A3 /* album.json */; };
 		30D16E8E261E4F9000A166A3 /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 30D16E8D261E4F9000A166A3 /* albums.json */; };
+		30D16EA4261EFD8700A166A3 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D16EA3261EFD8700A166A3 /* ImageCacheService.swift */; };
 		8F247F48956DB81AB83862FC /* Pods_PicturePinch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF8B6E2FFB4B2C65CC05F21 /* Pods_PicturePinch.framework */; };
 		E641BAAF41152EF827028060 /* Pods_PicturePinchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2805D30F45D2FF490D2F1E /* Pods_PicturePinchTests.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		30D16E72261E484100A166A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30D16E89261E490A00A166A3 /* album.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = album.json; sourceTree = "<group>"; };
 		30D16E8D261E4F9000A166A3 /* albums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = albums.json; sourceTree = "<group>"; };
+		30D16EA3261EFD8700A166A3 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		43808522C7FD964B3CBFF11E /* Pods-PicturePinch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicturePinch.debug.xcconfig"; path = "Target Support Files/Pods-PicturePinch/Pods-PicturePinch.debug.xcconfig"; sourceTree = "<group>"; };
 		44EEF02832C5D98783CC0348 /* Pods-PicturePinchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicturePinchTests.release.xcconfig"; path = "Target Support Files/Pods-PicturePinchTests/Pods-PicturePinchTests.release.xcconfig"; sourceTree = "<group>"; };
 		6AF8B6E2FFB4B2C65CC05F21 /* Pods_PicturePinch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicturePinch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +167,7 @@
 				30CAE323261664D6000B4933 /* API */,
 				30CAE32826166522000B4933 /* LanguageService.swift */,
 				30CAE37C261A5F78000B4933 /* RealmService.swift */,
+				30D16EA3261EFD8700A166A3 /* ImageCacheService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -232,7 +235,7 @@
 		30CAE3642616775C000B4933 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				30CAE3652616777A000B4933 /* PictureCollectionViewCell.swift */,
+				30CAE383261B2A2A000B4933 /* AlbumTableViewcell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,7 +285,7 @@
 		30D16E96261E520D00A166A3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				30CAE383261B2A2A000B4933 /* AlbumTableViewcell.swift */,
+				30CAE3652616777A000B4933 /* PictureCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				30CAE36F26167909000B4933 /* Picture.swift in Sources */,
 				30D16E5F261CB5AD00A166A3 /* AlbumViewController.swift in Sources */,
 				30CAE34B261667FD000B4933 /* AlbumsViewController.swift in Sources */,
+				30D16EA4261EFD8700A166A3 /* ImageCacheService.swift in Sources */,
 				30CAE325261664EF000B4933 /* APIService.swift in Sources */,
 				30CAE346261667FD000B4933 /* AlbumsWorker.swift in Sources */,
 				30CAE34F26166879000B4933 /* SplashScreenViewController.swift in Sources */,

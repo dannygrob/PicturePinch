@@ -1,6 +1,7 @@
 {
     "default": {
         "pictures":"",
-        "albums": "My Albums"
+        "albums": "My Albums",
+        "ok": "OK"
     }
 }

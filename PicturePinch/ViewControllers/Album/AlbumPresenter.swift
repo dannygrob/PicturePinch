@@ -14,15 +14,20 @@ import UIKit
 
 protocol AlbumPresentationLogic
 {
-    func presentAlbumContents(response: Albums.Contents.Response)
+    func presentAlbumContents(response: Pictures.List.Response)
+    func presentError(error:Error)
 }
 
 class AlbumPresenter: AlbumPresentationLogic
 {
     weak var viewController: AlbumDisplayLogic?
     
-    func presentAlbumContents(response: Albums.Contents.Response)
+    func presentAlbumContents(response: Pictures.List.Response)
     {
         viewController?.displayAlbumContents(response.pictures, hasMore: response.hasMore)
+    }
+    
+    func presentError(error:Error) {
+        viewController?.displayError(error: error.localizedDescription)
     }
 }

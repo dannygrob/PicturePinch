@@ -14,7 +14,8 @@ import UIKit
 
 protocol AlbumBusinessLogic
 {
-    func fetchAlbumContents(request: Albums.Contents.Request)
+    func fetchAlbumContents(request: Pictures.List.Request)
+    func fetchAlbumContentsCache(request: Pictures.List.Request)
 }
 
 protocol AlbumDataStore
@@ -27,20 +28,39 @@ class AlbumInteractor: AlbumBusinessLogic, AlbumDataStore
     var presenter: AlbumPresentationLogic?
     var worker: AlbumWorker = AlbumWorker()
     
-    func fetchAlbumContents(request: Albums.Contents.Request)
+    func fetchAlbumContents(request: Pictures.List.Request)
     {
         worker.fetchPictures(albumId: request.albumId, page: request.page, size: request.size) { [weak self] (result) in
             guard let self = self else {
-                //TODO: error display present
                 return
             }
             switch result {
             case .success(let pics):
-                let response = Albums.Contents.Response(pictures: pics, hasMore: pics.count == request.size)
+                let response = Pictures.List.Response(pictures: pics, hasMore: pics.count == request.size)
                 self.presenter?.presentAlbumContents(response: response)
                 break
-            case .failure(_):
-                //TODO: error display present
+            case .failure(let error):
+                self.presenter?.presentError(error: error)
+                break
+            }
+        }
+        
+        
+    }
+    
+    func fetchAlbumContentsCache(request: Pictures.List.Request)
+    {
+        worker.fetchCachedPictures(albumId: request.albumId, page: request.page, size: request.size) { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success(let pics):
+                let response = Pictures.List.Response(pictures: pics, hasMore: pics.count == request.size)
+                self.presenter?.presentAlbumContents(response: response)
+                break
+            case .failure(let error):
+                self.presenter?.presentError(error: error)
                 break
             }
         }

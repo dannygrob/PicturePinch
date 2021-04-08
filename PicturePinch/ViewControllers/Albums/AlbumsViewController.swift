@@ -10,13 +10,14 @@ import UIKit
 protocol AlbumsDisplayLogic: class
 {
     func displayAlbums(_ albums: [Albums.List.ViewModel], hasMore:Bool)
+    func displayError(error:String)
 }
 
 class AlbumsViewController: UIViewController, AlbumsDisplayLogic
 {
     var interactor: AlbumsBusinessLogic?
     var router: (NSObjectProtocol & AlbumsRoutingLogic & AlbumsDataPassing)?
-    var currentPage:Int = 0
+    var currentPage:Int = 1
     var albums:[Albums.List.ViewModel] = []
     var selectedAlbumId:Int?
     var hasMore:Bool = true
@@ -81,7 +82,7 @@ class AlbumsViewController: UIViewController, AlbumsDisplayLogic
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl!)
-        fetchAlbums(page: 0)
+        fetchAlbums(page: currentPage)
         
         self.title = "albums".translate()
     }
@@ -103,6 +104,12 @@ class AlbumsViewController: UIViewController, AlbumsDisplayLogic
         self.update(with: albums)
         tableView.reloadData()
         refreshControl?.endRefreshing()
+    }
+    
+    func displayError(error:String) {
+        let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok".translate(), style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func update(with contents:[Albums.List.ViewModel]) {

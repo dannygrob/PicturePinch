@@ -27,27 +27,4 @@ enum Albums
             let title:String
         }
     }
-    
-    
-    enum Contents
-    {
-        struct Request
-        {
-            let albumId:Int
-            let page:Int
-            let size:Int
-        }
-        struct Response
-        {
-            let pictures:[Albums.Contents.ViewModel]
-            let hasMore:Bool
-        }
-        struct ViewModel
-        {
-            let title:String
-            let thumbnailURL:String
-            let cachedImage:UIImage? = nil
-            let url:String
-        }
-    }
 }

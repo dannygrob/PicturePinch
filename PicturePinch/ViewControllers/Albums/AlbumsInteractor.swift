@@ -32,6 +32,7 @@ class AlbumsInteractor: AlbumsBusinessLogic, AlbumsDataStore
                 self.presenter?.presentAlbums(response: response)
                 break
             case .failure(let error):
+                self.presenter?.presentError(error: error)
                 break
             }
         })
@@ -46,6 +47,7 @@ class AlbumsInteractor: AlbumsBusinessLogic, AlbumsDataStore
                 self.presenter?.presentAlbums(response: response)
                 break
             case .failure(let error):
+                self.presenter?.presentError(error: error)
                 break
             }
         })

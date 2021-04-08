@@ -11,7 +11,7 @@ class AlbumsWorker
 {
     func fetchCachedAlbums(page:Int, size:Int, completion: @escaping (Result<[Albums.List.ViewModel], APIError>) -> Void) {
         var result:[Albums.List.ViewModel] = []
-        let cache = RealmService.defaultRealm.objects(Album.self).filter("id <= %@",size)
+        let cache = RealmService.defaultRealm.objects(Album.self).filter("id > %@ && id <= %@",(page - 1) * size, page * size)
         for album in cache {
             let vm = Albums.List.ViewModel(id: album.id, title: album.title ?? "no_title".translate())
             result.append(vm)
