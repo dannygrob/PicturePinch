@@ -149,6 +149,7 @@ extension AlbumViewController:UICollectionViewDataSource, UICollectionViewDelega
 extension AlbumViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //TODO: define values for these magic numbers :)
         let width = (self.view.frame.size.width - 12 * 2) / 2
         return CGSize(width: width, height: width)
     }

@@ -2,6 +2,7 @@
     "default": {
         "pictures":"",
         "albums": "My Albums",
-        "ok": "OK"
+        "ok": "OK",
+        "no_title": "No title"
     }
 }

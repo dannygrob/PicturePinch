@@ -15,7 +15,7 @@ protocol AlbumsBusinessLogic
 
 protocol AlbumsDataStore
 {
-    
+    //not used for now
 }
 
 class AlbumsInteractor: AlbumsBusinessLogic, AlbumsDataStore
