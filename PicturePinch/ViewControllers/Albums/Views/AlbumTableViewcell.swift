@@ -13,4 +13,10 @@ class AlbumTableViewCell:UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
     
+    public var item:Albums.List.ViewModel? {
+        didSet {
+            self.titleLabel?.text = item?.title ?? "no_title".translate()
+            self.idLabel?.text = "\(item?.id ?? 0)"
+        }
+    }
 }

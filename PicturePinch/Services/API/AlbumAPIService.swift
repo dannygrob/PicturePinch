@@ -12,7 +12,7 @@ class AlbumAPIService: APIService {
     static let shared:AlbumAPIService = AlbumAPIService()
     
     func getAlbums(page:Int, limit:Int, completion: @escaping (Result<JSON, APIError>) -> Void) {
-        self.get(path: "albums?_page=\(page)&limit=\(limit)") { (result) in
+        self.get(path: "albums?_page=\(page)&_limit=\(limit)") { (result) in
             switch result {
             case .success(let json):
                 completion(.success(json))
@@ -25,7 +25,7 @@ class AlbumAPIService: APIService {
     }
     
     func getPictures(albumId:Int, page:Int, limit:Int, completion: @escaping (Result<JSON, APIError>) -> Void) {
-        self.get(path: "photos?albumId=\(albumId)&_page=\(page)&limit=\(limit)") { (result) in
+        self.get(path: "photos?albumId=\(albumId)&_page=\(page)&_limit=\(limit)") { (result) in
             switch result {
             case .success(let json):
                 completion(.success(json))

@@ -1,26 +1,32 @@
 //
-//  AlbumsWorker.swift
+//  AlbumsViewModel.swift
 //  PicturePinch
 //
-//  Created by Danny Grob on 01/04/2021.
-//  Copyright (c) 2021 DigitalFactor. All rights reserved.
+//  Created by Danny Grob on 09/04/2021.
 //
 
-import UIKit
+import Foundation
+import RxSwift
+import RxCocoa
 
-class AlbumsWorker
-{
-    func fetchCachedAlbums(page:Int, size:Int, completion: @escaping (Result<[Albums.List.ViewModel], APIError>) -> Void) {
+class AlbumsViewModel {
+    
+    let items = PublishSubject<[Albums.List.ViewModel]>()
+    
+    func fetchCachedAlbums(page:Int, size:Int) {
         var result:[Albums.List.ViewModel] = []
         let cache = RealmService.defaultRealm.objects(Album.self).filter("id > %@ && id <= %@",(page - 1) * size, page * size)
         for album in cache {
             let vm = Albums.List.ViewModel(id: album.id, title: album.title ?? "no_title".translate())
             result.append(vm)
         }
-        completion(.success(result))
+        self.items.onNext(result)
+        self.items.onCompleted()
     }
     
-    func fetchAlbums(page:Int, size:Int, completion: @escaping (Result<[Albums.List.ViewModel], APIError>) -> Void) {
+    func fetchAlbumList(page:Int, size:Int) {
+        fetchCachedAlbums(page: page, size: size)
+        
         AlbumAPIService.shared.getAlbums(page: page, limit: size) { (result) in
             switch result {
             case .success(let json):
@@ -38,12 +44,15 @@ class AlbumsWorker
                     RealmService.defaultRealm.add(resultAlbums, update: .modified)
                 }
                 
-                completion(.success(result))
-            case .failure(let error):
-                completion(.failure(error))
+                self.items.onNext(result)
+                self.items.onCompleted()
+                
+            case .failure(_):
+                //TODO:Errorhandling
                 break
             }
         }
+    
     }
-
+    
 }

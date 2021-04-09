@@ -10,6 +10,8 @@ target 'PicturePinch' do
   pod "AlamofireImage"
   pod "SwiftyJSON"
   pod "RealmSwift"
+  pod 'RxSwift', '6.1.0'
+  pod 'RxCocoa', '6.1.0'
   
 end
 

@@ -12,16 +12,6 @@ enum Albums
 {
     enum List
     {
-        struct Request
-        {
-            let page:Int
-            let size:Int
-        }
-        struct Response
-        {
-            let albums:[Albums.List.ViewModel]
-            let hasMore:Bool
-        }
         struct ViewModel
         {
             let id:Int

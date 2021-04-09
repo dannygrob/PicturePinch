@@ -6,22 +6,19 @@
 //  Copyright (c) 2021 DigitalFactor. All rights reserved.
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-protocol AlbumsDisplayLogic: class
+class AlbumsViewController: UIViewController
 {
-    func displayAlbums(_ albums: [Albums.List.ViewModel], hasMore:Bool)
-    func displayError(error:String)
-}
-
-class AlbumsViewController: UIViewController, AlbumsDisplayLogic
-{
-    var interactor: AlbumsBusinessLogic?
-    var router: (NSObjectProtocol & AlbumsRoutingLogic & AlbumsDataPassing)?
-    var currentPage:Int = 1
-    var albums:[Albums.List.ViewModel] = []
-    var selectedAlbumId:Int?
-    var hasMore:Bool = true
-    var refreshControl:UIRefreshControl?
+    private let items = PublishSubject<[Albums.List.ViewModel]>()
+    private var currentPage:Int = 1
+    private let bag = DisposeBag()
+    private let viewModel = AlbumsViewModel()
+    private var selectedAlbumId:Int?
+    
+    private var hasMore:Bool = true
+    private var refreshControl:UIRefreshControl?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -29,48 +26,12 @@ class AlbumsViewController: UIViewController, AlbumsDisplayLogic
     
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: Object lifecycle
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder)
-    {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    // MARK: Setup
-    private func setup()
-    {
-        let viewController = self
-        let interactor = AlbumsInteractor()
-        let presenter = AlbumsPresenter()
-        let router = AlbumsRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
-    
     // MARK: Routing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-        
         if let dest = segue.destination as? AlbumViewController {
-            if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
-                let album = albums[selectedIndexPath.row]
-                dest.albumId = album.id
+            if let albumId = self.selectedAlbumId {
+                dest.albumId = albumId
             }
         }
     }
@@ -79,31 +40,25 @@ class AlbumsViewController: UIViewController, AlbumsDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.addSubview(refreshControl!)
-        fetchAlbums(page: currentPage)
         
         self.title = "albums".translate()
+
+        tableView.rx.setDelegate(self).disposed(by: bag)
+        self.bindTableView()
     }
     
-    @objc func refresh() {
-        fetchAlbums(page: currentPage, size: albums.count)
-    }
-    
-    func fetchAlbums(page:Int, size:Int = 10)
-    {
-        currentPage = page
-        let request = Albums.List.Request(page: page, size: size)
-        interactor?.fetchAlbumsCache(request: request)
-        interactor?.fetchAlbums(request: request)
-    }
-    
-    func displayAlbums(_ albums: [Albums.List.ViewModel], hasMore:Bool) {
-        self.hasMore = hasMore
-        self.update(with: albums)
-        tableView.reloadData()
-        refreshControl?.endRefreshing()
+    private func bindTableView() {
+        viewModel.items.bind(to: tableView.rx.items(cellIdentifier: "AlbumCell", cellType: AlbumTableViewCell.self)) { (row,item,cell) in
+            cell.item = item
+        }.disposed(by: bag)
+        
+        tableView.rx.modelSelected(Albums.List.ViewModel.self).subscribe(onNext: { item in
+            self.selectedAlbumId = item.id
+            self.performSegue(withIdentifier: "ShowAlbum", sender: self)
+            
+        }).disposed(by: bag)
+        
+        viewModel.fetchAlbumList(page: currentPage, size: 30)
     }
     
     func displayError(error:String) {
@@ -112,44 +67,12 @@ class AlbumsViewController: UIViewController, AlbumsDisplayLogic
         self.present(alert, animated: true, completion: nil)
     }
     
-    func update(with contents:[Albums.List.ViewModel]) {
-        if let first = contents.first?.id, let last = contents.last?.id, albums.count >= last{
-            albums.replaceSubrange(first - 1...last - 1, with: contents)
-        } else {
-            self.albums.append(contentsOf: contents)
-        }
-    }
-    
 }
 
-extension AlbumsViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+extension AlbumsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return albums.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let album = albums[indexPath.row]
-        
-        if indexPath.row == albums.count - 1, hasMore == true {
-            currentPage += 1
-            fetchAlbums(page: currentPage)
-        }
-        
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell") as? AlbumTableViewCell {
-            cell.titleLabel?.text = album.title
-            cell.idLabel?.text = "\(album.id)"
-            
-            return cell
-        }
-        
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30A96380262067DE00C64BDF /* AlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A9637F262067DE00C64BDF /* AlbumsViewModel.swift */; };
 		30CAE307261663D2000B4933 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE306261663D2000B4933 /* AppDelegate.swift */; };
 		30CAE30B261663D2000B4933 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE30A261663D2000B4933 /* ViewController.swift */; };
 		30CAE30E261663D2000B4933 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CAE30C261663D2000B4933 /* Main.storyboard */; };
@@ -15,11 +16,7 @@
 		30CAE325261664EF000B4933 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE324261664EF000B4933 /* APIService.swift */; };
 		30CAE32926166522000B4933 /* LanguageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE32826166522000B4933 /* LanguageService.swift */; };
 		30CAE32D26166584000B4933 /* language.json in Resources */ = {isa = PBXBuildFile; fileRef = 30CAE32C26166580000B4933 /* language.json */; };
-		30CAE346261667FD000B4933 /* AlbumsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE340261667FD000B4933 /* AlbumsWorker.swift */; };
-		30CAE347261667FD000B4933 /* AlbumsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE341261667FD000B4933 /* AlbumsRouter.swift */; };
-		30CAE348261667FD000B4933 /* AlbumsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE342261667FD000B4933 /* AlbumsPresenter.swift */; };
 		30CAE349261667FD000B4933 /* AlbumsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE343261667FD000B4933 /* AlbumsModels.swift */; };
-		30CAE34A261667FD000B4933 /* AlbumsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE344261667FD000B4933 /* AlbumsInteractor.swift */; };
 		30CAE34B261667FD000B4933 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE345261667FD000B4933 /* AlbumsViewController.swift */; };
 		30CAE34F26166879000B4933 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CAE34E26166879000B4933 /* SplashScreenViewController.swift */; };
 		30CAE354261668FA000B4933 /* Albums.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30CAE353261668FA000B4933 /* Albums.storyboard */; };
@@ -58,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30A9637F262067DE00C64BDF /* AlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewModel.swift; sourceTree = "<group>"; };
 		30CAE303261663D2000B4933 /* PicturePinch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicturePinch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30CAE306261663D2000B4933 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30CAE30A261663D2000B4933 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,11 +66,7 @@
 		30CAE324261664EF000B4933 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		30CAE32826166522000B4933 /* LanguageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageService.swift; sourceTree = "<group>"; };
 		30CAE32C26166580000B4933 /* language.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = language.json; sourceTree = "<group>"; };
-		30CAE340261667FD000B4933 /* AlbumsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsWorker.swift; sourceTree = "<group>"; };
-		30CAE341261667FD000B4933 /* AlbumsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsRouter.swift; sourceTree = "<group>"; };
-		30CAE342261667FD000B4933 /* AlbumsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsPresenter.swift; sourceTree = "<group>"; };
 		30CAE343261667FD000B4933 /* AlbumsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsModels.swift; sourceTree = "<group>"; };
-		30CAE344261667FD000B4933 /* AlbumsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsInteractor.swift; sourceTree = "<group>"; };
 		30CAE345261667FD000B4933 /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		30CAE34E26166879000B4933 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		30CAE353261668FA000B4933 /* Albums.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Albums.storyboard; sourceTree = "<group>"; };
@@ -205,12 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				30CAE3642616775C000B4933 /* Views */,
-				30CAE340261667FD000B4933 /* AlbumsWorker.swift */,
-				30CAE341261667FD000B4933 /* AlbumsRouter.swift */,
-				30CAE342261667FD000B4933 /* AlbumsPresenter.swift */,
 				30CAE343261667FD000B4933 /* AlbumsModels.swift */,
-				30CAE344261667FD000B4933 /* AlbumsInteractor.swift */,
 				30CAE345261667FD000B4933 /* AlbumsViewController.swift */,
+				30A9637F262067DE00C64BDF /* AlbumsViewModel.swift */,
 			);
 			path = Albums;
 			sourceTree = "<group>";
@@ -499,23 +490,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30CAE34A261667FD000B4933 /* AlbumsInteractor.swift in Sources */,
 				30CAE30B261663D2000B4933 /* ViewController.swift in Sources */,
 				30CAE35C26166A86000B4933 /* AlbumAPIService.swift in Sources */,
 				30CAE381261B2299000B4933 /* ImageScrollView.swift in Sources */,
 				30CAE307261663D2000B4933 /* AppDelegate.swift in Sources */,
+				30A96380262067DE00C64BDF /* AlbumsViewModel.swift in Sources */,
 				30CAE36F26167909000B4933 /* Picture.swift in Sources */,
 				30D16E5F261CB5AD00A166A3 /* AlbumViewController.swift in Sources */,
 				30CAE34B261667FD000B4933 /* AlbumsViewController.swift in Sources */,
 				30D16EA4261EFD8700A166A3 /* ImageCacheService.swift in Sources */,
 				30CAE325261664EF000B4933 /* APIService.swift in Sources */,
-				30CAE346261667FD000B4933 /* AlbumsWorker.swift in Sources */,
 				30CAE34F26166879000B4933 /* SplashScreenViewController.swift in Sources */,
 				30D16E5C261CB5AD00A166A3 /* AlbumWorker.swift in Sources */,
 				30CAE384261B2A2A000B4933 /* AlbumTableViewcell.swift in Sources */,
 				30CAE372261A5BC0000B4933 /* PhotoViewController.swift in Sources */,
 				30D16E5B261CB5AD00A166A3 /* AlbumPresenter.swift in Sources */,
-				30CAE348261667FD000B4933 /* AlbumsPresenter.swift in Sources */,
 				30CAE32926166522000B4933 /* LanguageService.swift in Sources */,
 				30D16E60261CB5AD00A166A3 /* AlbumInteractor.swift in Sources */,
 				30D16E5E261CB5AD00A166A3 /* AlbumModels.swift in Sources */,
@@ -523,7 +512,6 @@
 				30CAE349261667FD000B4933 /* AlbumsModels.swift in Sources */,
 				30D16E5D261CB5AD00A166A3 /* AlbumRouter.swift in Sources */,
 				30CAE3662616777A000B4933 /* PictureCollectionViewCell.swift in Sources */,
-				30CAE347261667FD000B4933 /* AlbumsRouter.swift in Sources */,
 				30CAE358261669C0000B4933 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

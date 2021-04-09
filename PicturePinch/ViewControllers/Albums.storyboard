@@ -65,14 +65,9 @@
                                             <outlet property="folderImageView" destination="jd8-ly-LYa" id="PsO-Gs-jcr"/>
                                             <outlet property="idLabel" destination="StZ-AC-MLU" id="Sov-L5-rao"/>
                                             <outlet property="titleLabel" destination="5gH-7t-UXv" id="mAF-cF-pRf"/>
-                                            <segue destination="lI8-AR-SC6" kind="show" id="WWw-OG-NTE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="B1z-wK-eYf" id="H5W-Fg-LIc"/>
-                                    <outlet property="delegate" destination="B1z-wK-eYf" id="ngZ-D1-oLF"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Sil-of-Dlf"/>
@@ -86,6 +81,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="WDL-qS-aiS" id="4Bo-Lz-yg5"/>
+                        <segue destination="lI8-AR-SC6" kind="show" identifier="ShowAlbum" id="ZyE-sT-2fL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qII-em-RI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
